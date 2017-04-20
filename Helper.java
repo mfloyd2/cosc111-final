@@ -12,7 +12,20 @@ public class Helper
      */
     public static double Converter(double value, int mode)
     {
-        return 0;
+        if( mode ==1)
+        {
+            double answer1 = value/1.61;
+            return answer1;
+        }
+        if( mode == 2)
+        {
+            double answer2 = value* 1.61;
+            return answer2;
+        }
+        else
+        {
+            return 0;
+        }
     }
     
     /*
@@ -22,7 +35,13 @@ public class Helper
      */
     public static int[] generateRandom(int count, int min, int max)
     {
-    	return null;
+        int randoms[] = new int[count];
+        Random rand = new Random();
+        for (int i = 0; i<count; i++)
+        {
+            randoms[i]= rand.nextInt(max)+min;
+        }
+        return randoms ;
     }
     
     /*
@@ -30,7 +49,16 @@ public class Helper
      */
     public static int findSmallestNumberThatDivides (int n1, int n2)
     {
-    	return 0;
+        int i = 2;
+        while ( n1%i !=0 && n2%i!=0)
+        {
+            if(( n1%i ==0) && (n2%i==0))
+            {
+                return i;
+            }
+            i++;
+        }
+        return i; 
     }
     
     /*
@@ -38,7 +66,13 @@ public class Helper
      */
     public static double findMean(double[] values)
     {
-    	return 0;
+        double sum = 0;
+        for(int i = 0; i<values.length; i++)
+        {
+            sum = sum + values[i];
+        }
+        double mean = sum/values.length;
+        return mean;
     }
     
     /*
@@ -48,7 +82,12 @@ public class Helper
      */
     public static boolean isMichiganSSN(long ssn)
     {
-    	return false;
+        long social = ssn/1000000;
+        if( social<387 && social>361)
+        {
+        return true;
+    }
+        return false;
     }
     
     /*
@@ -57,7 +96,8 @@ public class Helper
      */
     public static double calculateDoublingTime(double r)
     {
-    	return 0;
+        double time = Math.log(2)/Math.log(1+(r/100));
+        return time;
     }
     
     /*
@@ -70,7 +110,7 @@ public class Helper
      */
     public static Product makeProduct(int offset, int colorCode, int revision)
     {
-    	return null;
+        return null;
     }
     
     /*
@@ -79,30 +119,31 @@ public class Helper
      */
     public static WirelessAdapter findbyMACAddress(WirelessAdapter[] nics, String MAC_address)
     {
-    	return null;
+        
+        return null;
     }
     
-	/*
-	 * Helper function to generate a random MAC address
-	 */
-	public static String randomMACAddress(int seed)
-	{
-	    Random rand = new Random();
-	    rand.setSeed(seed);
-	    
-	    byte[] macAddr = new byte[6];
-	    rand.nextBytes(macAddr);
+    /*
+     * Helper function to generate a random MAC address
+     */
+    public static String randomMACAddress(int seed)
+    {
+        Random rand = new Random();
+        rand.setSeed(seed);
+        
+        byte[] macAddr = new byte[6];
+        rand.nextBytes(macAddr);
 
-	    macAddr[0] = (byte)(macAddr[0] & (byte)254);  //zeroing last 2 bytes to make it unicast and locally administered
+        macAddr[0] = (byte)(macAddr[0] & (byte)254);  //zeroing last 2 bytes to make it unicast and locally administered
 
-	    StringBuilder sb = new StringBuilder(18);
-	    for(byte b : macAddr)
-	    {
-	        if(sb.length() > 0)
-	            sb.append(":");
-	        sb.append(String.format("%02x", b));
-	    }
+        StringBuilder sb = new StringBuilder(18);
+        for(byte b : macAddr)
+        {
+            if(sb.length() > 0)
+                sb.append(":");
+            sb.append(String.format("%02x", b));
+        }
 
-	    return sb.toString().toUpperCase();
-	}
+        return sb.toString().toUpperCase();
+    }
 }
